@@ -68,6 +68,8 @@ class signup extends Component {
         this.setState({
           loading: false
         });
+        localStorage.clear();
+        localStorage.setItem("userid", res.data);
         this.props.history.push("/home");
       })
       .catch(err => {

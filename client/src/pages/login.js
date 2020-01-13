@@ -63,6 +63,9 @@ class login extends Component {
         this.setState({
           loading: false
         });
+        localStorage.clear();
+        localStorage.setItem("userid", res.data);
+        console.log(res);
         this.props.history.push("/home");
       })
       .catch(err => {

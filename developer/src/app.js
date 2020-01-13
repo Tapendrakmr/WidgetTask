@@ -3,11 +3,11 @@ const express = require("express");
 const app = express();
 
 //session
-const session = require("express-session");
+// const session = require("express-session");
 // bodyParser
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: "widget", saveUninitialized: true, resave: true }));
+// app.use(session({ secret: "widget", saveUninitialized: true, resave: true }));
 app.use(bodyParser.json());
 
 // for transmiting data
@@ -19,21 +19,19 @@ app.use(cors());
 require("./db/mongoose");
 
 // User handle
-const { data, login, signup } = require("./handler/user");
-const {
-  add,
-  edit,
-  deletTask,
-  trackTask,
-  notifyTask
-} = require("./handler/task");
+const { login, signup, profile, logout } = require("./handler/user");
+const { getAllScream, add, editTask } = require("./handler/task");
 
 // user
 app.post("/login", login);
 app.post("/signup", signup);
-
+app.get("/profile/:id", profile);
+// app.post("/logout", logout);
 // Task
-app.post("/scream", add);
+
+app.get("/allTask/:userid", getAllScream);
+app.post("/taskadd", add);
+app.patch("/taskedit/:taskId", editTask); //edit task
 // app.post("/scream/:screamId", edit);
 // app.delete("/scream/:screamId", deletTask);
 

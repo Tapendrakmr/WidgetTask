@@ -6,18 +6,22 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true
     },
-    briefOverview: {
+    overview: {
       type: String,
-      unique: true,
+
       trim: true
     },
-    body: {
+    summary: {
       type: String,
       trim: true
     },
     userId: {
       type: String,
       trim: true
+    },
+    complete: {
+      type: Boolean,
+      default: false
     }
   },
   {
